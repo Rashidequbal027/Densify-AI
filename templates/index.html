@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Densify AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Densify AI - Crowd Monitoring System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Densify AI Crowd Monitoring</h1>
-    <img src="{{ url_for('video') }}" width="700">
+    <div class="container">
+        <header>
+            <h1>🎯 Densify AI</h1>
+            <p class="subtitle">Real-time Crowd Monitoring & Density Detection</p>
+        </header>
+
+        <main class="content">
+            <div class="video-container">
+                <h2>Live Video Stream</h2>
+                <img id="videoFeed" src="{{ url_for('video') }}" alt="Live Stream" class="video-feed">
+                <p class="status">Status: <span id="status">Connecting...</span></p>
+            </div>
+
+            <aside class="info-panel">
+                <div class="info-card">
+                    <h3>📊 System Info</h3>
+                    <p><strong>Model:</strong> YOLOv8n</p>
+                    <p><strong>Framework:</strong> Flask + OpenCV</p>
+                    <p><strong>Status:</strong> <span class="status-badge active">Active</span></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📈 Crowd Levels</h3>
+                    <ul class="density-levels">
+                        <li><span class="level low"></span> Low Crowd &lt;10</li>
+                        <li><span class="level medium"></span> Medium 10-30</li>
+                        <li><span class="level high"></span> High Crowd &gt;30</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>⚙️ Controls</h3>
+                    <button class="btn btn-primary">Start Monitoring</button>
+                    <button class="btn btn-secondary">Stop Stream</button>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Densify AI | Smart Crowd Monitoring System</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update status when video loads
+        document.getElementById('videoFeed').onload = function() {
+            document.getElementById('status').textContent = 'Live';
+            document.getElementById('status').style.color = '#4CAF50';
+        };
+        
+        document.getElementById('videoFeed').onerror = function() {
+            document.getElementById('status').textContent = 'Offline';
+            document.getElementById('status').style.color = '#f44336';
+        };
+    </script>
 </body>
 </html>

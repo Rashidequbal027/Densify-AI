@@ -1,11 +1,12 @@
 """Main Flask application for Densify AI"""
 import logging
 import cv2
+import os
+from pathlib import Path
 from flask import Flask, render_template, Response
 from src.utils.detector import detect_people
 from src.utils.density import get_density
 from src.config import DEBUG, HOST, PORT, LOG_LEVEL, LOG_DIR
-import os
 
 # Setup logging
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -19,7 +20,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+# Get base directory
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+app = Flask(__name__, 
+            template_folder=str(BASE_DIR / 'templates'),
+            static_folder=str(BASE_DIR / 'static'))
 app.config['DEBUG'] = DEBUG
 
 cap = None
