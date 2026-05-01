@@ -23,15 +23,61 @@ Densify AI is a production-grade real-time crowd monitoring system that uses YOL
 
 ## 📁 Project Structure
 ```
-src/                    # Source code
-├── app.py             # Main Flask application
-├── config.py          # Configuration management
-└── utils/             # Utility modules
-    ├── detector.py    # YOLO detection
-    └── density.py     # Density classification
-tests/                 # Test suite
-data/                  # Data folder for uploads
-logs/                  # Application logs
+Densify-AI/
+├── src/                          # Source code (main application)
+│   ├── __init__.py              # Package initialization
+│   ├── app.py                   # Main Flask application with logging
+│   ├── config.py                # Configuration management (env vars)
+│   └── utils/                   # Utility modules
+│       ├── __init__.py
+│       ├── detector.py          # YOLO detection logic (PeopleDetector class)
+│       └── density.py           # Density classification (DensityClassifier class)
+│
+├── templates/                    # HTML templates
+│   └── index.html               # Modern dashboard UI
+│
+├── static/                       # Static files (CSS, JavaScript)
+│   └── style.css                # Responsive styling
+│
+├── tests/                        # Test suite (pytest)
+│   ├── __init__.py
+│   ├── conftest.py              # pytest configuration
+│   ├── test_detector.py         # Detector module tests
+│   └── test_density.py          # Density classifier tests
+│
+├── data/                         # Data folder for uploads/datasets
+│   └── .gitkeep                 # Git tracking placeholder
+│
+├── logs/                         # Application logs directory
+│   └── .gitkeep                 # Git tracking placeholder
+│
+├── model/                        # Machine learning models
+│   └── yolov8n.pt               # YOLOv8 nano model (pretrained COCO)
+│
+├── .github/workflows/            # CI/CD pipelines
+│   └── tests.yml                # GitHub Actions workflow
+│
+├── .env                          # Environment variables (local, ignored by git)
+├── .env.example                  # Environment template (version control)
+├── .gitignore                    # Git ignore patterns
+│
+├── Dockerfile                    # Docker configuration
+├── docker-compose.yml            # Docker Compose orchestration
+│
+├── requirements.txt              # Python dependencies (production)
+├── requirements-dev.txt          # Dev dependencies (pytest, etc)
+│
+├── run.py                        # Python entry point (main script)
+├── run.sh                        # Bash startup script (macOS/Linux)
+├── run.bat                       # Batch startup script (Windows)
+│
+├── README.md                     # Main documentation
+├── QUICKSTART.md                 # 2-minute quick start guide
+├── SETUP.md                      # Detailed setup & installation
+├── CONTRIBUTING.md               # Contribution guidelines
+├── PROJECT_STRUCTURE.md          # Detailed structure documentation
+├── LICENSE                       # MIT License
+└── .git/                         # Git repository
 ```
 
 ## ⚙️ Installation & Setup
@@ -68,20 +114,53 @@ docker run -p 5000:5000 densify-ai
 
 ## 🚀 How to Run
 
+### Quick Start (Recommended)
+Choose based on your operating system:
+
+**macOS / Linux:**
+```bash
+./run.sh
+```
+
+**Windows:**
+```bash
+run.bat
+```
+
+**Any OS (Python):**
+```bash
+python run.py
+```
+
+### Manual Steps
 1. **Setup environment:**
    ```bash
    cp .env.example .env
    ```
 
-2. **Run the application:**
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application:**
    ```bash
    python run.py
    ```
 
-3. **Open in browser:**
+4. **Open in browser:**
    ```
    http://127.0.0.1:5000/
    ```
+
+### Docker
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Access the application
+# Open browser: http://localhost:5000/
+```
 
 ## 🧪 Testing
 
@@ -133,13 +212,26 @@ LOG_DIR=logs
 
 Application logs are saved in `logs/densify_ai.log`
 
+## 📚 Documentation
+
+| File | Purpose |
+|------|---------|
+| **README.md** | Main documentation (you are here) |
+| **QUICKSTART.md** | 2-minute quick start guide |
+| **SETUP.md** | Detailed installation & configuration |
+| **CONTRIBUTING.md** | Guidelines for contributors |
+| **PROJECT_STRUCTURE.md** | Detailed structure explanation |
+
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow:
-1. Create a new branch
-2. Make changes
-3. Add tests
-4. Submit pull request
+Contributions are welcome! Please follow the [CONTRIBUTING.md](CONTRIBUTING.md) guide:
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Make changes and add tests
+4. Commit with meaningful messages
+5. Submit a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
 
 ## 📄 License
 MIT License
