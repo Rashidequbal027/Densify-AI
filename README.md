@@ -35,4 +35,4 @@ Densify AI is a real-time crowd monitoring system that uses YOLOv8 and OpenCV to
 COCO dataset (used by YOLO)
 
 ## 👨‍💻 Author
-Your Name
+Your Name: Rashid Equbal
